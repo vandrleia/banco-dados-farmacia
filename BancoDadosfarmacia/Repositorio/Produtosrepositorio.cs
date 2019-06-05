@@ -34,6 +34,7 @@ namespace Repositorio
                 produtoHigienico.Id = Convert.ToInt32(linha["id"]);
                 produtoHigienico.Nome = linha["nome"].ToString();
                 produtoHigienico.Preco = Convert.ToDecimal(linha["preco"]);
+                produtoHigienico.Quantidade = Convert.ToInt32(linha["quantidade"]);
                 produtoHigienico.Categoria = linha["categoria"].ToString();
                 produtosHigienicos.Add(produtoHigienico);
             }
@@ -49,7 +50,7 @@ namespace Repositorio
 
             SqlCommand comando = new SqlCommand();
             comando.Connection = conexao;
-            comando.CommandText = "SELECT * FROM produtosHigienicos WHERE id = @ID ";
+            comando.CommandText = "SELECT * FROM produtos_higienicos WHERE id = @ID ";
             comando.Parameters.AddWithValue("@ID", id);
 
             DataTable dataTable = new DataTable();
@@ -61,7 +62,8 @@ namespace Repositorio
                 ProdutoHigienico produtoHigienico = new ProdutoHigienico();
                 produtoHigienico.Id = Convert.ToInt32(linha["id"]);
                 produtoHigienico.Nome = linha["nome"].ToString();
-                produtoHigienico.Preco = Convert.ToDecimal(linha["preco"]);
+                produtoHigienico.Preco = Convert.ToDecimal(linha ["preco"]);
+                produtoHigienico.Quantidade = Convert.ToInt32(linha["quantidade"]);
                 produtoHigienico.Categoria = linha["categoria"].ToString();
                 return produtoHigienico;
             }
@@ -75,8 +77,50 @@ namespace Repositorio
 
             SqlCommand comando = new SqlCommand();
             comando.Connection = conexao;
-            comando.CommandText = @"INSERT INTO produtosHigienicos(nome,preco,categoria)VALUES(@NOME, @PRECO, @CATEGORIA)";
-            comando.Parameters.AddWithValue("@NOME", )
+            comando.CommandText = @"INSERT INTO produtos_higienicos(nome,preco,quantidade,categoria)VALUES(@NOME, @PRECO, @QUANTIDADE, @CATEGORIA)";
+            comando.Parameters.AddWithValue("@NOME", produtoHigienico.Nome);
+            comando.Parameters.AddWithValue("@PRECO", produtoHigienico.Preco);
+            comando.Parameters.AddWithValue("@QUANTIDADE", produtoHigienico.Quantidade);
+            comando.Parameters.AddWithValue("@CATEGORIA", produtoHigienico.Categoria);
+            comando.ExecuteNonQuery();
+            conexao.Close();
+        }
+        public void Apagar(int id)
+        {
+            SqlConnection conexao = new SqlConnection();
+            conexao.ConnectionString = CadeiaConexao;
+            conexao.Open();
+
+            SqlCommand comando = new SqlCommand();
+            comando.Connection = conexao;
+            comando.CommandText = "DELETE FROM produtos_higienicos WHERE id = @ID";
+            comando.Parameters.AddWithValue("@ID", id);
+            comando.ExecuteNonQuery();
+            conexao.Close();
+        }
+        public void Atualizar(ProdutoHigienico produtoHigienico)
+        {
+            SqlConnection conexao = new SqlConnection();
+            conexao.ConnectionString = CadeiaConexao;
+            conexao.Open();
+
+            SqlCommand comando = new SqlCommand();
+            comando.Connection = conexao;
+            comando.CommandText = @"UPDATE produtos_higienicos SET nome = @NOME, preco = @PRECO, quantidade = @QUANTIDADE, categoria = @CATEGORIA";
+            comando.Parameters.AddWithValue("@NOME", produtoHigienico.Nome);
+            comando.Parameters.AddWithValue("@PRECO", produtoHigienico.Preco);
+            comando.Parameters.AddWithValue("@QUANTIDADE", produtoHigienico.Quantidade);
+            comando.Parameters.AddWithValue("@CATEGORIA", produtoHigienico.Categoria);
+            comando.ExecuteNonQuery();
+            conexao.Close();
+
+
+
+
+
+
+
+
         }
     }
 }

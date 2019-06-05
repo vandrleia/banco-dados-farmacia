@@ -11,6 +11,7 @@ namespace Model
         public int Id;
         public string Nome;
         public decimal Preco;
+        public int Quantidade;
         public string Categoria;
 
     }

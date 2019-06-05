@@ -16,5 +16,11 @@ namespace View
         {
             InitializeComponent();
         }
+
+        private void btnCadastro_Click(object sender, EventArgs e)
+        {
+            ListaProdutoHigienico form = new ListaProdutoHigienico();
+            form.Visible = true;
+        }
     }
 }

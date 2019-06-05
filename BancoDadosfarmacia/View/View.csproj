@@ -52,6 +52,12 @@
     <Compile Include="CadastroProdutoHigienico.Designer.cs">
       <DependentUpon>CadastroProdutoHigienico.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditarCadastro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditarCadastro.Designer.cs">
+      <DependentUpon>EditarCadastro.cs</DependentUpon>
+    </Compile>
     <Compile Include="ListaProdutoHigienico.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -66,6 +72,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="CadastroProdutoHigienico.resx">
+      <DependentUpon>CadastroProdutoHigienico.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditarCadastro.resx">
+      <DependentUpon>EditarCadastro.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ListaProdutoHigienico.resx">
       <DependentUpon>ListaProdutoHigienico.cs</DependentUpon>
     </EmbeddedResource>
@@ -93,6 +105,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{c01dc53a-cb15-4829-88c9-eae81e5c17de}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Repositorio\Repositorio.csproj">
+      <Project>{de1d0a67-dd8a-4629-aede-cd4da8222a01}</Project>
+      <Name>Repositorio</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
