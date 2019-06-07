@@ -26,15 +26,25 @@ namespace Repositorio
             tabela.Load(comando.ExecuteReader());
 
             List<Remedio> remedios = new List<Remedio>();
-            for (int i = 0; i < tabela.Rows.Count; i++) ;
+            for (int i = 0; i < tabela.Rows.Count; i++)
+            {
 
-            DataRow linha = tabela.Rows[i];
-            Remedio remedio = new Remedio();
-            remedio.Id = Convert.ToInt32(linha["id"]);
-            remedio.Nome = linha["nome"].ToString();
-            remedio.Categoria = linha["categoria"].ToString();
-            remedio.Generico = linha ["generico"]
+                DataRow linha = tabela.Rows[i];
+                Remedio remedio = new Remedio();
+                remedio.Id = Convert.ToInt32(linha["id"]);
+                remedio.Nome = linha["nome"].ToString();
+                remedio.Categoria = linha["categoria"].ToString();
+                remedio.ContraIndicacao = linha["contra_indicacao"].ToString();
+                remedio.Generico = Convert.ToBoolean(linha["generico"]);
+                remedio.Bula = linha["bula"].ToString();
+                remedio.Receita = Convert.ToBoolean(linha["receita"]);
+                remedio.Faixa = linha["faixa"].ToString();
+                remedios.Add(remedio);
 
+            }
+            conexao.Close();
+            return remedios;
         }
+
     }
 }

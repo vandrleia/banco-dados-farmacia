@@ -20,7 +20,7 @@ CREATE TABLE comestiveis(
 CREATE TABLE remedios(
 id INT PRIMARY KEY IDENTITY (1,1),
 nome VARCHAR (100),
-generico VARCHAR (100),
+generico  BIT,
 categoria VARCHAR (100),
 contra_indicacao VARCHAR(500),
 bula VARCHAR (1000),
