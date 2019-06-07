@@ -36,6 +36,7 @@ namespace Repositorio
                 comestivel.Valor = Convert.ToDecimal(linha["valor"]);
                 comestivel.DataVencimento = Convert.ToDateTime(linha["data_vencimento"]);
                 comestivel.Marca = linha["marca"].ToString();
+                comestiveis.Add(comestivel);
             }
             conexao.Close();
             return comestiveis;
@@ -50,6 +51,7 @@ namespace Repositorio
             SqlCommand comando = new SqlCommand();
             comando.Connection = conexao;
             comando.CommandText = "SELECT * FROM comestiveis WHERE id = @ID";
+            comando.Parameters.AddWithValue("@ID", id);
 
             DataTable dataTable = new DataTable();
             dataTable.Load(comando.ExecuteReader());
@@ -63,6 +65,7 @@ namespace Repositorio
                 comestivel.Nome = linha["nome"].ToString();
                 comestivel.Valor = Convert.ToDecimal(linha["valor"]);
                 comestivel.DataVencimento = Convert.ToDateTime(linha["data_vencimento"]);
+                comestivel.Quantidade = Convert.ToInt32(linha["quantidade"]);
                 comestivel.Marca = linha["marca"].ToString();
                 return comestivel;
 
@@ -79,7 +82,7 @@ namespace Repositorio
 
             SqlCommand comando = new SqlCommand();
             comando.Connection = conexao;
-            comando.CommandText = @"INSERT INTO comestiveis (nome,valor,data_vencimento,quantidade,marca)VALUES (@NOME,@VALOR,@DAT_VENCIMENTO,@QUANTIDADE,@MARCA )";
+            comando.CommandText = @"INSERT INTO comestiveis (nome,valor,data_vencimento,quantidade,marca)VALUES (@NOME,@VALOR,@DATA_VENCIMENTO,@QUANTIDADE,@MARCA )";
             comando.Parameters.AddWithValue("@NOME", comestivel.Nome);
             comando.Parameters.AddWithValue("@VALOR", comestivel.Valor);
             comando.Parameters.AddWithValue("@DATA_VENCIMENTO", comestivel.DataVencimento);
@@ -98,6 +101,7 @@ namespace Repositorio
             SqlCommand comando = new SqlCommand();
             comando.Connection = conexao;
             comando.CommandText = "DELETE FROM comestiveis WHERE id = @ID";
+            comando.Parameters.AddWithValue("@ID", id);
             comando.ExecuteNonQuery();
             conexao.Close();
         } 
@@ -109,12 +113,14 @@ namespace Repositorio
 
             SqlCommand comando = new SqlCommand();
             comando.Connection = conexao;
-            comando.CommandText = @"UPDATE comestiveis SET nome = @NOME, valor = @VALOR, data_vencimento = @DATA_VENCIMENTO, quantidade = @QUANTIDADE, marca = @MARCA WHERE id = @ID ";
+            comando.CommandText = @"UPDATE comestiveis SET nome = @NOME, valor = @VALOR,
+data_vencimento = @DATA_VENCIMENTO, quantidade = @QUANTIDADE, marca = @MARCA WHERE id = @ID ";
             comando.Parameters.AddWithValue("@NOME", comestivel.Nome);
             comando.Parameters.AddWithValue("VALOR", comestivel.Valor);
             comando.Parameters.AddWithValue("@DATA_VENCIMENTO", comestivel.DataVencimento);
             comando.Parameters.AddWithValue("@QUANTIDADE", comestivel.Quantidade);
             comando.Parameters.AddWithValue("@MARCA", comestivel.Marca);
+            comando.Parameters.AddWithValue("@ID", comestivel.Id);
             comando.ExecuteNonQuery();
             conexao.Close();
 

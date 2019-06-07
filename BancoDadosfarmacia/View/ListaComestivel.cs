@@ -21,11 +21,11 @@ namespace View
         private void AtualizarTabela()
         {
             ComestivelRepositorio repositorio = new ComestivelRepositorio();
-            List<Comestivel> comestivel = repositorio.ObterTodos();
+            List<Comestivel> comestiveis= repositorio.ObterTodos();
             dataGridView1.Rows.Clear();
-            for (int i = 0; i < comestivel.Count; i++)
+            for (int i = 0; i < comestiveis.Count; i++)
             {
-                Comestivel comestivel = comestivel[i];
+                Comestivel comestivel = comestiveis[i];
                 dataGridView1.Rows.Add(new object[] { comestivel.Id, comestivel.Nome, comestivel.Valor, comestivel.DataVencimento, comestivel.Quantidade, comestivel.Marca });
 
             }
@@ -54,7 +54,17 @@ namespace View
 
         private void dataGridView1_DoubleClick(object sender, EventArgs e)
         {
-            int id = Convert.ToInt32(data)
+            int id = Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value);
+            ComestivelRepositorio repositorio = new ComestivelRepositorio();
+            Comestivel comestivel = repositorio.ObterPeloId(id);
+            EditarComestivel editarComestivel = new EditarComestivel(comestivel);
+            editarComestivel.ShowDialog();
+
+        }
+
+        private void ListaComestivel_Activated(object sender, EventArgs e)
+        {
+            AtualizarTabela();
         }
     }
 }

@@ -12,29 +12,37 @@ using System.Windows.Forms;
 
 namespace View
 {
-    public partial class ComestivelCadastro : Form
+    public partial class EditarComestivel : Form
     {
-        public ComestivelCadastro()
+        public EditarComestivel()
         {
             InitializeComponent();
         }
-        private void ComestivelCadastro_Load(object sender, EventArgs e)
+        public EditarComestivel(Comestivel comestivel)
         {
-
+            InitializeComponent();
+            txtId.Text = comestivel.Id.ToString();
+            txtNome.Text = comestivel.Nome;
+            mtdValor.Text = Convert.ToString(comestivel.Valor);
+            dtpDataVencimento.Text = comestivel.DataVencimento.ToString("yyyy-MM-dd");
+            txtQuantidade.Text = Convert.ToString(comestivel.Quantidade);
+            txtMarca.Text = comestivel.Marca;
         }
 
         private void btnSalvarComestivel_Click(object sender, EventArgs e)
         {
             Comestivel comestivel = new Comestivel();
+            comestivel.Id = Convert.ToInt32(txtId.Text);
             comestivel.Nome = txtNome.Text;
-
             comestivel.Valor = Convert.ToDecimal(mtdValor.Text.Replace("R$", "").Replace(" ", ""));
-            comestivel.DataVencimento = dtpDataVencimento.Value;
+            comestivel.DataVencimento = Convert.ToDateTime(dtpDataVencimento.Text);
             comestivel.Quantidade = Convert.ToInt32(txtQuantidade.Text);
             comestivel.Marca = txtMarca.Text;
             ComestivelRepositorio repositorio = new ComestivelRepositorio();
-            repositorio.Inserir(comestivel);
-            Close();
+            repositorio.Atualizar(comestivel);
+
+            MessageBox.Show("Editado com sucesso");
+                 
         }
     }
 }

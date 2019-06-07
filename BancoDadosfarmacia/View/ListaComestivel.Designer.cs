@@ -72,7 +72,7 @@
             this.ColumnDataVencimento,
             this.ColumnQuantidade,
             this.ColumnMarca});
-            this.dataGridView1.Location = new System.Drawing.Point(65, 134);
+            this.dataGridView1.Location = new System.Drawing.Point(69, 134);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(545, 304);
@@ -120,6 +120,7 @@
             this.Controls.Add(this.btnCadastrarComestivel);
             this.Name = "ListaComestivel";
             this.Text = "Form1";
+            this.Activated += new System.EventHandler(this.ListaComestivel_Activated);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 

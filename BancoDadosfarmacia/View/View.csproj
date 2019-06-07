@@ -64,6 +64,12 @@
     <Compile Include="EditarCadastro.Designer.cs">
       <DependentUpon>EditarCadastro.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditarComestivel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditarComestivel.Designer.cs">
+      <DependentUpon>EditarComestivel.cs</DependentUpon>
+    </Compile>
     <Compile Include="ListaComestivel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,8 +93,14 @@
     <EmbeddedResource Include="CadastroProdutoHigienico.resx">
       <DependentUpon>CadastroProdutoHigienico.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ComestivelCadastro.resx">
+      <DependentUpon>ComestivelCadastro.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EditarCadastro.resx">
       <DependentUpon>EditarCadastro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditarComestivel.resx">
+      <DependentUpon>EditarComestivel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ListaComestivel.resx">
       <DependentUpon>ListaComestivel.cs</DependentUpon>

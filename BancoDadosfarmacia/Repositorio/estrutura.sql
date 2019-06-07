@@ -8,7 +8,6 @@ categoria VARCHAR (100)
 );
 
 
-DROP TABLE comestiveis;
 CREATE TABLE comestiveis(
 	id INT PRIMARY KEY IDENTITY (1,1),
 	nome VARCHAR (100),
@@ -16,4 +15,16 @@ CREATE TABLE comestiveis(
 	data_vencimento DATETIME2,
 	quantidade INT,
 	marca VARCHAR(100)
+	);
+
+CREATE TABLE remedios(
+id INT PRIMARY KEY IDENTITY (1,1),
+nome VARCHAR (100),
+generico VARCHAR (100),
+categoria VARCHAR (100),
+contra_indicacao VARCHAR(500),
+bula VARCHAR (1000),
+faixa VARCHAR (100),
+receita BIT ,
 );
+SELECT * FROM remedios;
